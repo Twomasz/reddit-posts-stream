@@ -1,0 +1,12 @@
+[project]
+name = "tweety-steaming"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "pip",
+    "dotenv",
+    "praw>=7.8.1",
+    "kafka-python",
+    "pyspark>=3.5.4",
+]
