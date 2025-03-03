@@ -5,11 +5,8 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, from_json
 from pyspark.sql.types import StructType, StructField, StringType
 
-import config
 
 logger = logging.getLogger(__name__)
-
-
 
 # Initialize Spark Session
 spark = SparkSession.builder \

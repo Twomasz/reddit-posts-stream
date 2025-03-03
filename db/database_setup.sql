@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS reddit_msgs (
+    id SERIAL PRIMARY KEY,
+    username TEXT NOT NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

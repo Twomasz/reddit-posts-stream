@@ -5,8 +5,6 @@ import os
 import praw
 from kafka import KafkaProducer
 
-import config
-
 logger = logging.getLogger(__name__)
 
 # Reddit API credentials
