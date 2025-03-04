@@ -1,5 +1,7 @@
 # Reddit Stream Processing with Kafka, Spark, and PostgreSQL
 
+Real-time post stream on Reddit, which has become a crash course in Apache tools.
+
 ## Table of Contents
 
 - [Project Overview](#project-overview)
