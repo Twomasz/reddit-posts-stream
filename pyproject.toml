@@ -1,7 +1,8 @@
 [project]
-name = "tweety-steaming"
+name = "reddit-posts-stream"
 version = "0.1.0"
-description = "Add your description here"
+description = "Real-time post stream on Reddit, which has become a crash course in Apache tools"
+readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "pip",
@@ -9,4 +10,12 @@ dependencies = [
     "praw>=7.8.1",
     "kafka-python",
     "pyspark>=3.5.4",
+    "retry>=0.9.2",
+    "findspark>=2.0.1",
+    "psycopg2-binary>=2.9.10",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9.9",
 ]

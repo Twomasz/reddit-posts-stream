@@ -1,3 +1,4 @@
 kafka-python
 praw
 dotenv
+retry

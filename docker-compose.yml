@@ -5,17 +5,17 @@ services:
     ports:
       - "2181:2181"
 
-  kafka_service:
-    container_name: kafka_service
+  kafka_broker:
+    container_name: kafka_broker
     image: wurstmeister/kafka
     depends_on:
       - zookeeper
     env_file:
       - .env
     environment:
-      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092  # by default listen all
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${KAFKA_BROKER}
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092  # by default listen all
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka_broker:9092
     ports:
       - "9092:9092"
     volumes:
@@ -26,14 +26,11 @@ services:
     image: postgres:15
     env_file:
       - .env
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./db_init:/docker-entrypoint-initdb.d  # init scripts
 
   kafka_producer:
     container_name: kafka_producer
@@ -41,7 +38,9 @@ services:
       context: ./producer
       dockerfile: Dockerfile
     depends_on:
-      - kafka_service
+      - kafka_broker
+    env_file:
+      - .env
 
   spark_consumer:
     build:
@@ -53,15 +52,10 @@ services:
       - postgres
     env_file:
       - .env
-    environment:
-      SPARK_MODE: "master"
-      SPARK_MASTER_URL: "spark://spark:7077"
     ports:
       - "8080:8080"
       - "7077:7077"
       - "8888:8888"  # port to run jobs in Jupyter
-    volumes:
-      - spark_jars:/opt/spark/jars
 
 volumes:
   kafka_data:
