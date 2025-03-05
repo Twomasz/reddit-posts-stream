@@ -58,8 +58,8 @@ Ensure you have the following installed:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/reddit-streaming-pipeline.git
-cd reddit-streaming-pipeline
+git clone https://github.com/Twomasz/reddit-posts-stream.git
+cd reddit-posts-stream
 ```
 2. Create a `.env` file with the required environment variables.
 3. Install Python dependencies locally (optionally):
